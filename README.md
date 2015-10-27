@@ -8,3 +8,9 @@ An opensource drupal environment build on top of Docker and Kalabox.
 * MariaDB
 * Solr
 * Terminus
+
+# Installation
+...
+
+# Usage
+...
