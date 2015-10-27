@@ -1,10 +1,10 @@
-# cambium
-An opensource development environment.
+# Cambium
 
-# Key Features:
-* Apache
-* MySQL
-* MongoDB
-* Drush
-* Memcache
-* Varnish
+An opensource drupal environment build on top of Docker and Kalabox.
+
+# Features
+* Redis
+* Nginx
+* MariaDB
+* Solr
+* Terminus
