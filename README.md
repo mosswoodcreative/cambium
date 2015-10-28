@@ -17,7 +17,7 @@ An opensource drupal environment build on top of Docker and Kalabox.
 
 # Issues
 If you have Virtualbox installed. This might produced a wierd error after issuing
-`kbox create` or `kbox start`. This is because of this (Virtualbox error)[https://github.com/kalabox/kalabox-app-pantheon/issues/39].
+`kbox create` or `kbox start`. This is because of this [Virtualbox error](https://github.com/kalabox/kalabox-app-pantheon/issues/39).
 
 ```
 Kernel driver not installed (rc=-1908)
