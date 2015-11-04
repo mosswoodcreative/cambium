@@ -52,6 +52,26 @@ To install Cambium run the following command in your terminal.
     info: -- OK! 4% complete! --
     ```
 
+    ```
+    info: Downloading files...
+    fetch : https://github.com/boot2docker/boot2docker-cli/releases/download/v1.8.0/boot2docker-v1.8.0-linux-amd64
+    fetch : http://download.virtualbox.org/virtualbox/5.0.2/virtualbox-5.0_5.0.2-102096~Ubuntu~trusty_amd64.deb
+    fetch : https://raw.githubusercontent.com/kalabox/kalabox-boot2docker/master/profile
+    fetch : https://github.com/syncthing/syncthing/releases/download/v0.11.25/syncthing-linux-amd64-v0.11.25.tar.gz
+    fetch : https://raw.githubusercontent.com/kalabox/kalabox/v0.10/dockerfiles/syncthing/config.xml
+    progress : [====================] 100% 0.0s
+
+    info: -- OK! 50% complete! --
+
+    info: -- Step 13/24 --
+    info: Setting up syncthing...
+    info: -- OK! 54% complete! --
+
+    info: -- Step 14/24 --
+    info: Running admin install commands...
+    [sudo] password for gerald:
+    ```
+
     Let the installer handle the rest of the setup.
 
     If you ever encouter an error like the following:
