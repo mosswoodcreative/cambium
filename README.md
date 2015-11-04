@@ -20,7 +20,6 @@ $ which kbox
 /usr/local/bin/kbox
 ```
 
-
 To install Cambium run the following command in your terminal.
 
 1. `kbox create pantheon`
