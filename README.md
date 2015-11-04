@@ -22,8 +22,10 @@ $ which kbox
 
 
 To install Cambium run the following command in your terminal.
+
 1. `kbox create pantheon`
-   This will ask series of question regarding your Pantheon account. Please see
+
+   This will ask series of questions regarding your Pantheon account. Please see
    the sample below.
 
    ```
@@ -50,7 +52,8 @@ To install Cambium run the following command in your terminal.
     ? Install all the magic and get this party started? Yes
     info: -- OK! 4% complete! --
     ```
-    Let the installer to handle the rest of the setup.
+
+    Let the installer handle the rest of the setup.
 
     If you ever encouter an error like the following:
 
@@ -75,6 +78,8 @@ To install Cambium run the following command in your terminal.
     }
     ```
 
+    And...
+
     ```
     error=Error while pulling image: Get https://index.docker.io/v1/repositories/kalabox/skydns/images: dial tcp: lookup index.docker.io: no such host
     info: VError: Error pulling image "{
@@ -96,10 +101,13 @@ To install Cambium run the following command in your terminal.
     ```
 
     To solve these:
+
     ```
-    nslookup index.docker.io
-    nslookup registry-1.docker.io
+    $ nslookup index.docker.io
+    $ nslookup registry-1.docker.io
     ```
+
+2. `kbox start` to start the machine.
 
 # Usage
 ...
