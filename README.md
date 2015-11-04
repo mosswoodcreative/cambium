@@ -106,8 +106,9 @@ To install Cambium run the following command in your terminal.
     $ nslookup registry-1.docker.io
     ```
 
-    Then you  might need to delete everything inside `~/.kalabox/`. The run
-    `kbox create pantheon` again.
+    Then you  might need to delete everything inside `~/.kalabox/`.
+    `$ ./reset.sh`
+    `$ kbox create pantheon`
 
 2. `kbox start` to start the machine.
 
