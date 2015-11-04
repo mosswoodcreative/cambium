@@ -135,6 +135,8 @@ To install Cambium run the following command in your terminal.
 
 2. `kbox start` to start the machine.
 
+> Done!
+
 # Usage
 ...
 
