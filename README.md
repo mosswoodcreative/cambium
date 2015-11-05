@@ -178,6 +178,35 @@ To install Cambium run the following command in your terminal.
 * `kbox down` - Shutdown the container.
 * `kbox up` - Start the container.
 
+# Type Less, Do More
+Since git commands are integrated to kbox you are ended up typing long commands.
+Good thing that you can take advantage of bash alias.
+
+```
+alias kbox-add="kbox git add"
+alias kbox-pull="kbox git pull"
+alias kbox-push="kbox git push"
+alias kbox-branch="kbox git branch"
+alias kbox-commit="kbox git commit"
+alias kbox-reset="kbox git reset"
+alias kbox-merge="kbox git merge"
+alias kbox-checkout="kbox git checkout"
+alias kbox-diff="kbox git diff"
+alias kbox-rebase="kbox git rebase"
+alias kbox-fetch="kbox git fetch"
+alias kbox-log="kbox git log"
+alias kbox-show="kbox git show"
+alias kbox-status="kbox git status"
+alias kbox-tag="kbox git tag"
+alias kbox-rm="kbox git rm"
+alias kbox-tag="kbox git tag"
+alias kbox-mv="kbox git mv"
+alias kbox-grep="kbox git grep"
+alias kbox-bisect="kbox git bisect"
+```
+
+All you need to do is put those aliases above in `~/.bashrc`.
+
 # Issues
 If you have Virtualbox installed. This might produced a wierd error after issuing
 `kbox create` or `kbox start`. This is because of this [Virtualbox error](https://github.com/kalabox/kalabox-app-pantheon/issues/39).
