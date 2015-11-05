@@ -138,7 +138,14 @@ To install Cambium run the following command in your terminal.
 > Done!
 
 # Usage
-...
+
+* `kbox start` - To start the virtual container.
+* `kbox stop` - Stop the virtual container. Shutdown.
+* `boot2docker --vm="Kalabox2" ssh` - SSH to Docker host.
+* `docker ps --all` - List all containers. This should be run after SSH'ing to Docker host.
+* `docker exec -it CONTAINER_ID bash` - SSH to specific Docker container like DB or app server.
+* `kbox down` - Shutdown the container.
+* `kbox up` - Start the container.
 
 # Issues
 If you have Virtualbox installed. This might produced a wierd error after issuing
