@@ -70,6 +70,21 @@ To install Cambium run the following command in your terminal.
     info: -- Step 14/24 --
     info: Running admin install commands...
     [sudo] password for gerald:
+
+    ....
+
+    ###############################################################
+
+                         BOOMSHAKALAKA!
+
+      You have created your app with great success! Now you need
+      to start that beast up which you can do by navigating to
+      /home/gerald/Desktop/test/berkeley-test and running `kbox start`.
+
+      You can also start from another directory by running
+      kbox berkeley-test start
+
+    ###############################################################
     ```
 
     Let the installer handle the rest of the setup.
