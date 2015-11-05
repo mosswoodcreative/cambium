@@ -148,7 +148,21 @@ To install Cambium run the following command in your terminal.
     $ kbox create pantheon
     ```
 
-2. `kbox start` to start the machine.
+2. `$ kbox berkeley-test start` to start the machine. Where `berkeley-test` is the sitename.
+   If the command is successful you'll see this message:
+
+   ```
+   ###############################################################
+
+                         HOLLA!!!!!!
+
+    Your app has started up correctly. Here are some vitals:
+
+    URL: http(s)://berkeley-test.kbox
+    LOCATION: /home/gerald/Desktop/test/berkeley-test
+
+  ###############################################################
+   ```
 
 > Done!
 
