@@ -22,6 +22,8 @@ $ which kbox
 
 To install Cambium run the following command in your terminal.
 
+**Note**: You dont need to clone this repo as it will be created after running `kbox create pantheon` command.
+
 1. `kbox create pantheon`
 
    This will ask series of questions regarding your Pantheon account. Please see
