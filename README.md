@@ -207,6 +207,8 @@ alias kbox-bisect="kbox git bisect"
 
 All you need to do is put those aliases above in `~/.bashrc`.
 
+Please see [this slides](http://www.slideshare.net/kirkstenvon/introduction-to-kalabox) presented in Drupal Camp Cebu 2015.
+
 # Issues
 If you have Virtualbox installed. This might produced a wierd error after issuing
 `kbox create` or `kbox start`. This is because of this [Virtualbox error](https://github.com/kalabox/kalabox-app-pantheon/issues/39).
