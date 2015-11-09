@@ -1,0 +1,67 @@
+{
+  "appName": "berkeley-test",
+  "appType": "kalabox-app-pantheon",
+  "appPlugins": [
+    "kalabox-plugin-git",
+    "kalabox-plugin-rsync",
+    "kalabox-plugin-pantheon"
+  ],
+  "shareIgnores": [
+    "sites/default/files",
+    "files",
+    "wp-content/uploads",
+    "!*modules*"
+  ],
+  "pluginConf": {
+    "kalabox-plugin-pantheon": {
+      "account": "geraldvillorente@gmail.com",
+      "drush-version": "6",
+      "env": "dev",
+      "framework": "drupal",
+      "php": "5.5.24",
+      "site": "berkeley-test",
+      "upstream": {
+        "url": "git://github.com/pantheon-systems/drops-7.git",
+        "product_id": "21e1fada-199c-492b-97bd-0b36b53a9da0",
+        "branch": "master"
+      }
+    }
+  },
+  "appComponents": {
+    "appserver": {
+      "image": {
+        "name": "pantheon-appserver",
+        "srcRoot": ":appRoot:"
+      },
+      "proxy": [
+        {
+          "port": "80/tcp",
+          "default": true
+        },
+        {
+          "port": "443/tcp",
+          "default": true,
+          "secure": true
+        }
+      ]
+    },
+    "db": {
+      "image": {
+        "name": "pantheon-mariadb",
+        "srcRoot": ":appRoot:"
+      }
+    },
+    "solr": {
+      "image": {
+        "name": "pantheon-solr",
+        "srcRoot": ":appRoot:"
+      }
+    },
+    "redis": {
+      "image": {
+        "name": "pantheon-redis",
+        "srcRoot": ":appRoot:"
+      }
+    }
+  }
+}

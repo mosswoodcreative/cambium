@@ -6,7 +6,8 @@
 
 // Intrinsic mods
 var path = require('path');
-var https   = require('https');
+var https = require('https');
+var url = require('url');
 
 // Npm mods
 var _ = require('lodash');
@@ -17,7 +18,7 @@ var pkgJson = require('./../package.json');
 
 // Files we need and the projects from whence they came.
 // @todo: check whether this actually is set?
-var assets = pkgJson.postInstallAssets;
+var pkgs = pkgJson.postInstallPkgs;
 
 /*
  * Get the minor version of the current project
@@ -138,10 +139,11 @@ var getProjectVersion = function(project, callback) {
   // If not we need to do some exploration on the github API
   else {
     // Request opts to find the github tags for a project
+    var projectParts = project.split('@');
     var options = {
       hostname: 'api.github.com',
       port: 443,
-      path: '/repos/kalabox/' + project + '/tags',
+      path: '/repos/kalabox/' + projectParts[0] + '/tags',
       method: 'GET',
       json: true,
       headers: {'User-Agent': 'Kalabox'}
@@ -170,90 +172,77 @@ var getProjectVersion = function(project, callback) {
 
 };
 
-/*
- * Get the minor version for a kalabox github project based on the
- * minor version of this project
+/**
+ * Returns a string with the url of the dev branch
+ * tarball. The package must be on github and have a repository
+ * field in its pacakge.json. It must also have a dev branch that is
+ * considered the development branch on github.
  */
-var writeInternetFile = function(project, location, callback) {
+var getTarball = function(pkg, version) {
 
-  // Get version we are going to use before we start
-  getProjectVersion(project, function(version) {
+  // Build our tarball URL
+  // https://github.com/kalabox/kalabox-plugin-dbenv/tarball/master
+  var tarUrl = {
+    protocol: 'https:',
+    host: 'github.com',
+    pathname: ['kalabox', pkg, 'tarball', version].join('/')
+  };
 
-    // This protects against the use case where you aren't in dev mode
-    // but you also have no published packages for the minor version
-    if (version === undefined) {
-      callback(false);
-    }
-    else {
-      // this should be the github path
-      var urlPath = ['kalabox', project, version, location].join('/');
+  // Return the formatted tar URL
+  return url.format(tarUrl);
 
-      // Request opts for RAW github content
-      var options = {
-        hostname: 'raw.githubusercontent.com',
-        port: 443,
-        path: '/' + urlPath,
-        method: 'GET',
-        headers: {'User-Agent': 'Kalabox'}
-      };
+};
 
-      // Create our vendor dirs if needed
-      var filePath = path.join('vendor', project, path.dirname(location));
-      fs.mkdirsSync(filePath);
+/*
+ * Replaces the version part of a npm pkg@version string with
+ * the master branch tarball from github if that package is a kalabox
+ * plugin
+ *
+ * If you are using your own external app or plugin it needs to live on github
+ * and have a master branch or this is not going to work.
+ *
+ */
+var pkgToDev = function(pkg, version) {
 
-      // Construct the file object
-      var fileName = path.basename(location);
-      var file = fs.createWriteStream(path.join(filePath, fileName));
+  // Split our package so we can reassemble later
+  var parts = pkg.split('@');
 
-      // Make the request and write the stream to file
-      var req = https.request(options, function(res) {
+  // Grab the dev tarball if ths is a kalabox plugin
+  if (_.includes(pkg, 'kalabox-')) {
 
-        // Wrtie stream to disk
-        res.on('data', function(d) {
-          file.write(d);
-        });
+    // Get the tarball location
+    var tar = getTarball(parts[0], version);
+    return [parts[0], tar].join('@');
 
-        // Return some stuff
-        res.on('end', function() {
-          callback(urlPath, filePath);
-        });
-
-      });
-
-      // Fin
-      req.end();
-
-      // Errors
-      req.on('error', function(err) {
-        console.error(err);
-      });
-    }
-  });
+  }
+  // Otherwise just return what we have
+  else {
+    return pkg;
+  }
 
 };
 
 // Downlaod our files and put them in their place
-_.forEach(assets, function(files, project) {
-  _.forEach(files, function(file, purpose) {
+_.forEach(pkgs, function(pkg) {
+  getProjectVersion(pkg, function(version) {
 
-    var options = {
-      hostname: 'api.github.com',
-      port: 443,
-      path: '/repos/kalabox/' + project + '/tags',
-      method: 'GET',
-      json: true,
-      headers: {'User-Agent': 'Kalabox'}
-    };
+    if (version.charAt(0) === 'v') {
+      pkg = pkgToDev(pkg, version);
+    }
 
-    writeInternetFile(project, file, function(url, loc) {
-      var msg;
-      if (url === false) {
-        msg = 'No latest package for this version. Try running in devMode';
-      }
-      else {
-        msg = 'Grabbed a file from ' + url + ' doth put it hither: ' + loc;
-      }
-      console.log(msg);
+    var spawn = require('child_process').spawn;
+    var npm = spawn('npm', ['install', pkg]);
+
+    npm.stdout.on('data', function(data) {
+      console.log('stdout: ' + data);
+    });
+
+    npm.stderr.on('data', function(data) {
+      console.log('stderr: ' + data);
+    });
+
+    npm.on('close', function(code) {
+      console.log('child process exited with code ' + code);
     });
 
   });
