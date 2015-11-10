@@ -210,7 +210,7 @@ All you need to do is put those aliases above in `~/.bashrc`.
 Please see [this slides](http://www.slideshare.net/kirkstenvon/introduction-to-kalabox) presented in Drupal Camp Cebu 2015.
 
 # Issues
-If you have Virtualbox installed. This might produced a wierd error after issuing
+1. If you have Virtualbox installed. This might produced a wierd error after issuing
 `kbox create` or `kbox start`. This is because of this [Virtualbox error](https://github.com/kalabox/kalabox-app-pantheon/issues/39).
 
 ```
@@ -226,3 +226,5 @@ as root. If it is available in your distribution, you should install the DKMS pa
 On debian based OS you can fix this by running:
 
 `sudo /etc/init.d/vboxdrv setup` and rerun the `kbox` commands.
+
+2. [More merciful retries for people with slower/sporadic internet?](https://github.com/kalabox/kalabox/issues/664)
